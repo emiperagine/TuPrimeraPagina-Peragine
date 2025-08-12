@@ -8,8 +8,8 @@ class Clases(models.Model):
   
 class Plan(models.Model):
     nombre = models.CharField(max_length=10)
-    precio = models.DecimalField(max_digits=8)
-    clases_incluidas = models.ManyToManyField(Clases, related_name='plan')
+    precio = models.DecimalField(max_digits=8, decimal_places=2)
+    clases_incluidas = models.ManyToManyField('Clases', related_name='planes_con_clase')
 
     def __str__(self):
         return (f'Plan: {self.plan}')
