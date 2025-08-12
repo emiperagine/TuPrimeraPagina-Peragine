@@ -12,7 +12,7 @@ class Plan(models.Model):
     clases_incluidas = models.ManyToManyField('Clases', related_name='planes_con_clase')
 
     def __str__(self):
-        return (f'Plan: {self.plan}')
+        return (f'Plan: {self.nombre}')
     
     
 
