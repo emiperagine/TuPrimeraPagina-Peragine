@@ -2,6 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 def index(request):
-    return HttpResponse("Este es el inicio de la web")
+    return render(request, 'entrega/templates/inicio/inicio.html')
 
 
