@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block texto_h1 %} Auto: {{auto}} {% endblock texto_h1 %}
+
+{% block contenido %}
+
+<ul>
+    <li>Nombre {{plan.nombre}}</li>
+    <li>Precio: {{plan.precio}}</li>
+    <li>Clases incluidas: {{plan.clases_incluidas}}</li>
+</ul>
+
+{% endblock contenido %}
