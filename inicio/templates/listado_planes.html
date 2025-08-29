@@ -11,14 +11,14 @@
         <input type="submit" value="Buscar">
     </form>
 
-    {% if autos_buscados %}
+    {% if planes_buscados %}
         <ul>
-            {% for auto in autos_buscados %}
+            {% for plan in planes_buscados %}
                 <li>
-                    {{auto}}
-                    | <a href={% url "auto_detalle" auto.id %}>Detalle</a> 
-                    | <a href={% url "auto_actualizar" auto.id %}>Actualizar</a> 
-                    | <a href={% url "auto_borrar" auto.id %}>Borrar</a> 
+                    {{plan}}
+                    | <a href={% url "detalle_plan" plan.id %}>Detalle</a> 
+                    | <a href={% url "editar_plan" plan.id %}>Actualizar</a> 
+                    | <a href={% url "auto_borrar" plan.id %}>Borrar</a> 
                 </li>
             {% endfor %}
         </ul>

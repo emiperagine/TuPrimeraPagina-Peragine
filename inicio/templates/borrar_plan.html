@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block texto_h1 %} Borrar Plan{% endblock texto_h1 %}
+
+{% block contenido %}
+
+    <form action="" method="POST">
+        {% csrf_token %}
+
+        <p>
+            Desea eliminar el auto {{plan}}??
+        </p>
+
+        <input type="submit" value="Confirmar">
+    </form>
+
+{% endblock contenido %}
