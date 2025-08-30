@@ -23,7 +23,7 @@ def armar_plan(request):
         if formulario.is_valid():
             info = formulario.cleaned_data
 
-            plan = Plan(nombre=info.get('nombre'), precio=info.get('precio'), imagen=info.get('imagen'))
+            plan = Plan(nombre=info.get('nombre'), dias=info.get('dias'), fotos_inicial=info.get('fotos_inicial'))
             plan.save()
         
             return redirect('listado_planes')
@@ -36,31 +36,29 @@ def listado_planes(request):
 
     formulario = FormularioBuscarPlan(request.GET)
     if formulario.is_valid():
-        marca_a_buscar = formulario.cleaned_data['nombre']
-        modelo_a_buscar = formulario.cleaned_data['precio']
-        planes_buscados = Plan.objects.filter(nombre__icontains=marca_a_buscar, precio__icontains=modelo_a_buscar)
+        nombre_a_buscar = formulario.cleaned_data['nombre']
+        dias_a_buscar = formulario.cleaned_data['dias']
+        planes_buscados = Plan.objects.filter(nombre__icontains=nombre_a_buscar, dias_a_buscar__icontains=dias_a_buscar)
     # else:
     #     autos_buscados = Auto.objects.all()
     
     return render(request, 'listado_planes.html', {'planes_buscados': planes_buscados, 'formulario': formulario})
 
 
-def plan_detalle(request, id_plan):
-    auto = Plan.objects.get(id=id_plan)
-    return render(request, 'plan_detalle.html', {'plan': auto})
+def detalle_plan(request, id_plan):
+    plan = Plan.objects.get(id=id_plan)
+    return render(request, 'detalle_plan.html', {'plan': plan})
 
 
-class AutoBorrar(LoginRequiredMixin, DeleteView):
-    model = Auto
-    template_name = "auto_borrar.html"
-    success_url = reverse_lazy('listado_de_autos')
+class PlanBorrar(LoginRequiredMixin, DeleteView):
+    model = Plan
+    template_name = "borrar_plan.html"
+    success_url = reverse_lazy('listado_planes')
 
 
-class AutoActualizar(LoginRequiredMixin, UpdateView):
-    model = Auto
-    template_name = "auto_actualizar.html"
-    success_url = reverse_lazy('listado_de_autos')
-    # fields = ['marca']
-    # fields = ['marca', 'modelo']
+class PlanActualizar(LoginRequiredMixin, UpdateView):
+    model = Plan
+    template_name = "editar_plan.html"
+    success_url = reverse_lazy('listado_planes')
     fields = '__all__'
     

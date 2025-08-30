@@ -2,14 +2,12 @@ from django.db import models
 
 # Create your models here.
 
-class Clases(models.Model):
-    nombre = models.CharField(max_length=20)
-    descripcion = models.CharField(max_length=100)
-  
+
 class Plan(models.Model):
     nombre = models.CharField(max_length=10)
-    precio = models.DecimalField(max_digits=8, decimal_places=2)
-    clases_incluidas = models.ManyToManyField('Clases', related_name='planes_con_clase')
-
+    días = models.CharField(max_length=50)
+    musculos_a_trabajar = models.CharField(max_length=200)
+    foto_inicial = models.ImageField(upload_to="fotos_inicial", null=True)
+    
     def __str__(self):
         return (f'Plan: {self.nombre}')
